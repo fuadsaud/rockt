@@ -1,10 +1,14 @@
+require 'rockt/environment/osx'
+require 'rockt/environment/unix'
+require 'rockt/environment/windows'
+require 'rockt/environment/cygwin'
+
 module Rockt
   module Environment
     class UnknownEnvironment < Exception; end
 
-    autoload :OSX, 'rockt/environment/osx'
-
-    KNOWN_ENVIRONMENTS = [OSX]
+    # TODO: Make environment recognition dynamic
+    KNOWN_ENVIRONMENTS = [OSX, UNIX, Windows, Cygwin]
 
     def self.detect
       host_os = RbConfig::CONFIG['host_os']

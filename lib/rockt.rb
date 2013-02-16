@@ -6,7 +6,6 @@ module Rockt
     environment.commands.each do |command|
       if which command
         # system(command, uri)
-        puts "#{command} #{uri}"
         return command
       end
     end
@@ -28,6 +27,6 @@ module Rockt
     end
   end
 
-  autoload :VERSION, 'rockt/version'
-  autoload :Environment, 'rockt/environment'
+  require 'rockt/version'
+  require 'rockt/environment'
 end
