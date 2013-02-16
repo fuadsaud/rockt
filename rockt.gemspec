@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/fuadsaud/rockt"
 
   s.summary     = "Launch applications with ease."
-  s.description = "Rockt lets you open a file/URL with the OS default application."
+  s.description = "Rockt helps you to launch the right application to handle some file or webpage."
   s.licenses    = ['MIT']
 
   s.files         = `git ls-files`.split("\n")

@@ -1,7 +1,18 @@
 module Rockt
+  #
+  # This modules is responsible for recognizing the current underlying
+  # environment.
+  #
+  # It is to be extended by any module that represent an
+  # environment; these must implement a _regex_ method - which should match the
+  # environment name - and a _commands_ method - which will return an array
+  # containing the commands that should be ran to launch the application.
+  #
   module Environment
+    # Raised when current environment is not recognized
     class UnknownEnvironment < Exception; end
 
+    # List containing all modules extending Rockt::Environment
     KNOWN_ENVIRONMENTS = []
 
     # Keep tack of defined environments
@@ -9,6 +20,7 @@ module Rockt
       KNOWN_ENVIRONMENTS << extendor
     end
 
+    # Detect current environment
     def self.detect
       host_os = RbConfig::CONFIG['host_os']
 
