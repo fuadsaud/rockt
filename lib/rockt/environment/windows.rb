@@ -1,6 +1,8 @@
 module Rockt
   module Environment
     module Windows
+      extend Rockt::Environment
+
       def self.commands
         ['start']
       end

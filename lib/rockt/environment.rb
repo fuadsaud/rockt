@@ -1,14 +1,13 @@
-require 'rockt/environment/osx'
-require 'rockt/environment/unix'
-require 'rockt/environment/windows'
-require 'rockt/environment/cygwin'
-
 module Rockt
   module Environment
     class UnknownEnvironment < Exception; end
 
-    # TODO: Make environment recognition dynamic
-    KNOWN_ENVIRONMENTS = [OSX, UNIX, Windows, Cygwin]
+    KNOWN_ENVIRONMENTS = []
+
+    # Keep tack of defined environments
+    def self.extended(extendor)
+      KNOWN_ENVIRONMENTS << extendor
+    end
 
     def self.detect
       host_os = RbConfig::CONFIG['host_os']
@@ -21,3 +20,5 @@ module Rockt
     end
   end
 end
+
+%w{osx unix windows cygwin}.each {|env| require "rockt/environment/#{env}"}

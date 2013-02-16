@@ -1,6 +1,8 @@
 module Rockt
   module Environment
     module Cygwin
+      extend Rockt::Environment
+
       def self.commands
         ['cmd /C start /b']
       end

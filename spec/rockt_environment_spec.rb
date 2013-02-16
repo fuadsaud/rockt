@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Rockt::Environment do
-  rbconfig_host_oses = {}
   it 'should know at least one environment' do
     expect(Rockt::Environment::KNOWN_ENVIRONMENTS).not_to be_empty
   end
