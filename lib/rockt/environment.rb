@@ -21,4 +21,6 @@ module Rockt
   end
 end
 
-%w{osx unix windows cygwin}.each {|env| require "rockt/environment/#{env}"}
+Dir[File.join(File.dirname(__FILE__), 'environment', '*.rb')].each do |env|
+  require env
+end
