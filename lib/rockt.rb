@@ -5,8 +5,11 @@ module Rockt
 
     environment.commands.each do |command|
       if which command
-        # system(command, uri)
-        return command
+        if options[:dry_run]
+          return command
+        else
+          system(command, uri)
+        end
       end
     end
   end
