@@ -9,17 +9,25 @@
 module Rockt
   class NoSuitableApplication < Exception; end
 
+  @OPTIONS = {
+    dry_run: false
+  }
+
+  OPTIONS = @OPTIONS.clone
+
   #
   # This is the method for launching applications.
   #
   # Available options are
   # - dry_run: do not run the command, only returns it
   def self.launch(uri, options = {})
+    OPTIONS.merge! options
+
     environment = detect
 
     environment.commands.each do |command|
       if which command
-        if options[:dry_run]
+        if OPTIONS[:dry_run]
           return command
         else
           system(command, uri) or fail NoSuitableApplication
@@ -35,9 +43,13 @@ module Rockt
     Rockt::Environment.detect
   end
 
+  def self.reset_default_options!
+    OPTIONS.merge! @OPTIONS
+  end
+
   protected
   #
-  # Locate an executable file in the path.
+  # Locate an executable file in the path
   #
   def self.which(cmd)
     exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
