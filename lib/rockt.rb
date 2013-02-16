@@ -7,6 +7,7 @@
 #   Rockt.launch('http://github.com/')
 #
 module Rockt
+  class NoSuitableApplication < Exception; end
 
   #
   # This is the method for launching applications.
@@ -21,7 +22,7 @@ module Rockt
         if options[:dry_run]
           return command
         else
-          system(command, uri)
+          system(command, uri) or fail NoSuitableApplication
         end
       end
     end
