@@ -1,3 +1,6 @@
+require 'logger'
+require 'colored'
+
 #
 # This is the main class for the rockt gem. It defines the public interface.
 #
@@ -10,11 +13,17 @@ module Rockt
   class NoSuitableApplication < Exception; end
   class ApplicationLauncherNotFound < Exception; end
 
+  require 'rockt/version'
+  require 'rockt/environment'
+  require 'rockt/logger'
+
   @OPTIONS = {
     dry_run: false
   }
 
   OPTIONS = @OPTIONS.clone
+
+  Rockt::Logger.setup!(::Logger.new(STDERR, nil, nil))
 
   #
   # This is the method for launching applications.
@@ -25,9 +34,16 @@ module Rockt
   def self.launch(uri, options = {})
     OPTIONS.merge! options
 
-    command = detect_environment.commands.select {|cmd| which cmd }.first
+    env = detect_environment
+
+    Logger.info("Detected environment: ".blue + "#{env.name.match(/.*::(.*)/).to_a.last}".red)
+
+    command = env.commands.select {|cmd| which cmd }.first
+
 
     command or fail ApplicationLauncherNotFound
+
+    Logger.info('Running: '.blue + '`' + "#{command}".yellow + " #{uri}`")
 
     unless OPTIONS[:dry_run]
       extend Process
@@ -64,7 +80,4 @@ module Rockt
       end
     end
   end
-
-  require 'rockt/version'
-  require 'rockt/environment'
 end

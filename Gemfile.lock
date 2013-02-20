@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    rockt (0.1.0)
+      colored
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    colored (1.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rockt!
