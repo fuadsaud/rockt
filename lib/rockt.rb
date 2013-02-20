@@ -30,7 +30,9 @@ module Rockt
     command or fail ApplicationLauncherNotFound
 
     unless OPTIONS[:dry_run]
-      Process::wait(Process::spawn(command, uri))
+      extend Process
+
+      wait(spawn(command, uri))
       $?.exitstatus == 0 or fail NoSuitableApplication
     end
 
