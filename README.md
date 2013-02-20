@@ -8,6 +8,8 @@ A stupid application launcher for Ruby.
   Deadly easy:
     ```ruby Rockt.launch('http://github.com') ```
 
+# BEWARE: tested on OSX 10.8 only; (may not work in other OS's)
+
 ## TODO
 
 - Better way for firing subprocess
