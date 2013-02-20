@@ -5,10 +5,12 @@ A stupid application launcher for Ruby.
 
 ## Usage
 
-  Deadly easy:
-    ```ruby Rockt.launch('http://github.com') ```
+Just give it and URI, deadly simple:
+  ```Rockt.launch('http://github.com') ```
 
-# BEWARE: tested on OSX 10.8 only; (may not work in other OS's)
+This is going to open the system default web browser at "http://github.com"
+
+## BEWARE: tested on OSX 10.8 only; (may not work in other OS's)
 
 ## TODO
 
