@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["fuadksd@gmail.com"]
   s.homepage    = "http://github.com/fuadsaud/rockt"
 
-  s.summary     = "Launch applications with ease."
+  s.summary     = "Stupid application launcher for ruby"
   s.description = "Rockt helps you to launch the right application to handle some file or webpage."
   s.licenses    = ['MIT']
 
