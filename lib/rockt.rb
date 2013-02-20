@@ -8,6 +8,7 @@
 #
 module Rockt
   class NoSuitableApplication < Exception; end
+  class ApplicationLauncherNotFound < Exception; end
 
   @OPTIONS = {
     dry_run: false
@@ -24,26 +25,22 @@ module Rockt
   def self.launch(uri, options = {})
     OPTIONS.merge! options
 
-    environment = detect
+    command = detect_environment.commands.select {|cmd| which cmd }.first
 
-    environment.commands.any? or fail NoSuitableApplication
+    command or fail ApplicationLauncherNotFound
 
-    environment.commands.each do |command|
-      if which command
-        if OPTIONS[:dry_run]
-          return command
-        else
-          Process::wait(Process::spawn(command, uri))
-          $?.exitstatus == 0 or fail NoSuitableApplication
-        end
-      end
+    unless OPTIONS[:dry_run]
+      Process::wait(Process::spawn(command, uri))
+      $?.exitstatus == 0 or fail NoSuitableApplication
     end
+
+    return command
   end
 
   #
   # Returns the module representing the current environment
   #
-  def self.detect
+  def self.detect_environment
     Rockt::Environment.detect
   end
 
