@@ -20,17 +20,21 @@ module Rockt
   #
   # Available options are
   # - dry_run: do not run the command, only returns it
+  #
   def self.launch(uri, options = {})
     OPTIONS.merge! options
 
     environment = detect
+
+    environment.commands.any? or fail NoSuitableApplication
 
     environment.commands.each do |command|
       if which command
         if OPTIONS[:dry_run]
           return command
         else
-          system(command, uri) or fail NoSuitableApplication
+          Process::wait(Process::spawn(command, uri))
+          $?.exitstatus == 0 or fail NoSuitableApplication
         end
       end
     end
