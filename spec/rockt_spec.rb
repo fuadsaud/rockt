@@ -8,7 +8,7 @@ describe Rockt do
   context 'given invalid URI' do
     context "it's a path for existing file" do
       it 'should not raise exception' do
-        expect { Rockt.launch(__FILE__) }.not_to raise_error(Rockt::NoSuitableApplication)
+        expect { Rockt.launch(__FILE__, dry_run: true) }.not_to raise_error(Rockt::NoSuitableApplication)
       end
     end
 

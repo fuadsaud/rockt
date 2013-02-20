@@ -6,7 +6,7 @@ describe Rockt::Environment do
   end
 
   it 'should correctly detect current environment' do
-    (Rockt.detect.regex).should match(RbConfig::CONFIG['host_os'])
+    (Rockt.detect_environment.regex).should match(RbConfig::CONFIG['host_os'])
   end
 
   Rockt::Environment::KNOWN_ENVIRONMENTS.each do |env|
@@ -16,13 +16,13 @@ describe Rockt::Environment do
                       .with('host_os')
                       .and_return('darwin')
 
-      (Rockt.detect.regex).should match(RbConfig::CONFIG['host_os'])
+      (Rockt.detect_environment.regex).should match(RbConfig::CONFIG['host_os'])
     end
   end
 
   it 'should fire current environment application launcher' do
     command = Rockt.launch('http://github.com/fuadsaud', dry_run: true)
 
-    expect(Rockt.detect.commands).to include(command)
+    expect(Rockt.detect_environment.commands).to include(command)
   end
 end
