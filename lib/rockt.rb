@@ -23,7 +23,7 @@ module Rockt
 
   OPTIONS = @OPTIONS.clone
 
-  Rockt::Logger.setup!(::Logger.new(STDERR, nil, nil))
+  Rockt::Logger.setup!(STDOUT)
 
   #
   # This is the method for launching applications.
@@ -36,10 +36,9 @@ module Rockt
 
     env = detect_environment
 
-    Logger.info("Detected environment: ".blue + "#{env.name.match(/.*::(.*)/).to_a.last}".red)
+    Logger.info('Detected environment: '.blue + "#{env.name.match(/.*::(.*)/).to_a.last}".red)
 
     command = env.commands.select {|cmd| which cmd }.first
-
 
     command or fail ApplicationLauncherNotFound
 
@@ -63,10 +62,11 @@ module Rockt
   end
 
   def self.reset_default_options!
-    OPTIONS.merge! @OPTIONS
+    OPTIONS.clear.merge! @OPTIONS
   end
 
   protected
+
   #
   # Locate an executable file in the path
   #
