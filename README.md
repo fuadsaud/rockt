@@ -14,8 +14,6 @@ This is going to open the system default web browser at "http://github.com"
 
 ## TODO
 
-- Better way for firing subprocess
 - JRuby support
 - Handle popular desktop environments (KDE, Gnome, Xfce, etc.)
 - Test it on Windows/Cygwin
-- Verbosity
