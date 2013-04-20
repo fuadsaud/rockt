@@ -16,8 +16,14 @@ module Rockt
     KNOWN_ENVIRONMENTS = []
 
     # Keep tack of defined environments
-    def self.extended(extendor)
-      KNOWN_ENVIRONMENTS << extendor
+    def self.extended(env)
+      KNOWN_ENVIRONMENTS << env
+
+      env_name = "#{env.to_s.split('::').last}?"
+
+      self.singleton_class.send(:define_method, env_name.downcase.to_sym) do
+        detect == env
+      end
     end
 
     # Detect current environment
