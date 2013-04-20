@@ -1,6 +1,6 @@
 module Rockt
   module Environment
-    module OSX
+    module Darwin
       extend Rockt::Environment
 
       def self.commands
