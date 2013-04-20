@@ -3,12 +3,11 @@ module Rockt
 
     class << self
       def setup!(dev)
-        @logger = ::Logger.new(dev)
+        @dev = dev
       end
 
       def method_missing(method, *args, &block)
-        # @logger.send(method, *args, &block)
-        STDERR.puts args if Rockt::OPTIONS[:verbose]
+        @dev.puts args if Rockt::OPTIONS[:verbose]
       end
     end
   end
