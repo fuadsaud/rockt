@@ -21,6 +21,7 @@ module Rockt
 
       env_name = "#{env.to_s.split('::').last}?"
 
+      # Define a #{environment_name}? method for each of the known environments.
       self.singleton_class.send(:define_method, env_name.downcase.to_sym) do
         detect == env
       end

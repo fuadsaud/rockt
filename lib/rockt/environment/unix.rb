@@ -3,7 +3,7 @@ module Rockt
     module UNIX
       extend Rockt::Environment
 
-      def self.commands
+      def self.open
         ['xdg-open']
       end
 

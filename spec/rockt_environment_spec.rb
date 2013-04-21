@@ -23,6 +23,6 @@ describe Rockt::Environment do
   it 'should fire current environment application launcher' do
     command = Rockt.launch('http://github.com/fuadsaud', dry_run: true)
 
-    expect(Rockt.detect_environment.commands).to include(command)
+    expect(Rockt.detect_environment.open).to include(command)
   end
 end

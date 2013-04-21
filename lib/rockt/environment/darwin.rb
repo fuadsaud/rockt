@@ -3,7 +3,7 @@ module Rockt
     module Darwin
       extend Rockt::Environment
 
-      def self.commands
+      def self.open
         ['open']
       end
 

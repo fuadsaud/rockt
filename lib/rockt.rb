@@ -37,7 +37,7 @@ module Rockt
 
     Logger.info('Detected environment: '.blue + "#{env.name.match(/.*::(.*)/).to_a.last}".red)
 
-    command = env.commands.select {|cmd| which cmd }.first
+    command = env.open.select {|cmd| which cmd }.first
 
     command or fail ApplicationLauncherNotFound
 

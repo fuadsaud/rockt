@@ -3,7 +3,7 @@ module Rockt
     module Windows
       extend Rockt::Environment
 
-      def self.commands
+      def self.open
         ['start']
       end
 
