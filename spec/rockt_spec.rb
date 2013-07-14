@@ -8,12 +8,19 @@ describe Rockt do
   end
 
   describe '.launch' do
-    let(:param) { 'http://github.com/fuadsaud' }
+    let(:uri) { 'http://github.com/fuadsaud' }
 
-    it 'returns one of the command strings for the current environments' do
-      command = Rockt.launch(param, dry_run: true)
+    it 'returns one of the commands for the current environment' do
+      command = Rockt.launch(uri, dry_run: true)
 
-      expect(Rockt.detect_environment.open).to include(command)
+      expect(Rockt.detect_environment.commands).to include(command)
+    end
+  end
+
+  describe '.detect_environment' do
+    it 'correctly detects the current environment' do
+      expect(
+        Rockt.detect_environment.regex).to match RbConfig::CONFIG['host_os']
     end
   end
 end

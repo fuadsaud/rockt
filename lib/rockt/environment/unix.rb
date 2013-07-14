@@ -1,10 +1,15 @@
+# encoding: utf-8
+
 module Rockt
   module Environment
-    module UNIX
+
+    # Represents general Unix environments - Linux, BSD, Solaris.
+    # It basically depends on X's xdg-open.
+    module Unix
       extend Rockt::Environment
 
-      def self.open
-        ['xdg-open']
+      def self.commands
+        %w( xdg-open )
       end
 
       def self.regex
