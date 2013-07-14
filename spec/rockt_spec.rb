@@ -1,25 +1,19 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Rockt do
-  it 'should have a version' do
-    expect(Rockt::VERSION).to be_an(String)
+  it 'has a version' do
+    expect(Rockt::VERSION).to be_a String
   end
 
-  context 'given invalid URI' do
-    context "it's a path for existing file" do
-      it 'should not raise exception' do
-        expect { Rockt.launch(__FILE__, dry_run: true) }.not_to raise_error(Rockt::NoSuitableApplication)
-      end
-    end
+  describe '.launch' do
+    let(:param) { 'http://github.com/fuadsaud' }
 
-    context "it's not a path for existing file" do
-      it 'should raise exception' do
-        expect { Rockt.launch("path-to-non-existing-file-#{Time.now.to_s}") }.to raise_error(Rockt::NoSuitableApplication)
-      end
-    end
-  end
+    it 'returns one of the command strings for the current environments' do
+      command = Rockt.launch(param, dry_run: true)
 
-  context 'given valid URI' do
-    pending "NOT IMPLEMENTED"
+      expect(Rockt.detect_environment.open).to include(command)
+    end
   end
 end

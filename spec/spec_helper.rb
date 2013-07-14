@@ -1,8 +1,6 @@
-$: << 'lib'
+# encoding: utf-8
+
+$LOAD_PATH << 'lib'
 
 require 'rspec'
 require 'rockt'
-
-RSpec.configure do |config|
-  config.before { Rockt.reset_default_options! }
-end
