@@ -1,4 +1,4 @@
-require 'colored'
+# encoding: utf-8
 
 #
 # This is the main class for the rockt gem. It defines the public interface.
@@ -14,15 +14,12 @@ module Rockt
 
   require 'rockt/version'
   require 'rockt/environment'
-  require 'rockt/logger'
 
   @OPTIONS = {
     dry_run: false
   }
 
   OPTIONS = @OPTIONS.clone
-
-  Rockt::Logger.setup!(STDOUT)
 
   #
   # This is the method for launching applications.
