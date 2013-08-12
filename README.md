@@ -15,3 +15,7 @@ This is going to open the system default web browser at "http://github.com"
 - JRuby support
 - Better handle popular desktop environments (KDE, Gnome, Xfce, etc.)
 - Test it on Windows/Cygwin
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fuadsaud/rockt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
